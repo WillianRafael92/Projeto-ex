@@ -92,15 +92,15 @@
       data(){
         return {
             // route: 'employee',
-            employees:{},
+            employees:[],
             newEmployee: {}
         }
       },
       
       methods: {
         addEmployee: function(){
-            // this.employees.push(this.newEmployee);
-            // this.newEmployee = {}
+            this.employees.push(this.newEmployee);
+            this.newEmployee = {}
 
             // localStorage.setItem("employees", JSON.stringify(this.employees));
         }

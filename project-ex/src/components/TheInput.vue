@@ -2,6 +2,7 @@
     <div :class="`mt-3 ${divClass}`">
         <TheLabel :label="label" :required="required"/>
         <input 
+            v-model="inputValue"
             :ref="ref"
             type="text" 
             class="form-control" 
@@ -31,12 +32,10 @@
         methods: {
             update() { this.$emit('update:modelValue', this.inputValue)},
             updateValue() {
-                // validateRequired(
-                //     this.inputValue,
-                //     this.required,
-                //     this,
-                // // )
-                // this.update()
+                this.inputValue,
+                this.required,
+                this,
+                this.update()
             }
         },
     })
