@@ -38,5 +38,19 @@
                 this.update()
             }
         },
+
+        emmits: ["update:modelValue"],
+
+        created() { this.inputValue = this.modelValue },
+
+        watch: {
+            inputValue() {this.update},
+
+            modelValue() {
+                if (this.modelValue != this.inputValue) {
+                    this.inputValue = this.modelValue
+                }
+            }
+        }
     })
 </script>

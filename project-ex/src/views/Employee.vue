@@ -5,7 +5,6 @@
             <form ref="form" >
                 <div class="row">
                     <TheInput
-                        ref="name"
                         v-model="newEmployee.name"
                         divClass="col-xs-12 col-sm-12 col-md-8"
                         label="Nome"
@@ -30,7 +29,7 @@
                         v-model="newEmployee.phone"
                         divClass="col-12 col-md-6"
                         label="Telefone"
-                        v-mask="['(##) # ####-####', '(##) ####-####']"
+                        v-mask="['(##) ####-####', '(##) # ####-####']"
                         required
                     />
                 </div>
@@ -123,16 +122,31 @@
             headers: ['Nome', 'E-mail', 'Cargo', 'Ações'],
             // headers: ['name', 'email', 'role'],
             employees:[],
-            newEmployee: {}
+            newEmployee: {
+                name: null,
+                email: null,
+                cpf: null,
+                role: null,
+                birthday: null,
+                phone: null,
+            }
         }
       },
       
       methods: {
         addEmployee: function(){
-            this.employees.push(this.newEmployee);
-            this.newEmployee = {}
+            if(
+                !this.newEmployee.name || !this.newEmployee.email || !this.newEmployee.cpf || 
+                !this.newEmployee.phone || !this.newEmployee.birthday || !this.newEmployee.role
+            ){
+                alert("É nescessario preencher todos os campos!")
+            }else{
+                this.employees.push(this.newEmployee);
+                this.newEmployee = {}, 
 
-            localStorage.setItem("employees", JSON.stringify(this.employees));
+                localStorage.setItem("employees", JSON.stringify(this.employees));
+            }
+            
         },
 
         removeEmployee(employee){
