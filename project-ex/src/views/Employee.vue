@@ -39,6 +39,7 @@
                         v-model="newEmployee.birthday"
                         divClass="col-12 col-md-6"
                         label="Data de Nascimento"
+                        v-mask="'##/##/####'"
                         required
                     /> 
                     <TheInput
@@ -63,9 +64,23 @@
                 </div>
             </form>
         </div>
-        <div class="card card-body mx-2 mt-4">
+        <div v-if="employees.length" class="card card-body mx-2 mt-4">
             <HelloWorld msg="Lista de Funcionários"/>
-            <TheTable/>
+            <TheTable
+                :headers="headers"
+                :employees="employees"                
+            >
+                <template v-slot:Nome="{employee}"> 
+                     {{ employee.name }} 
+                </template>
+                <template v-slot:E-mail="{employee}">
+                    {{ employee.email }}
+                </template>
+                <template v-slot:Cargo="{employee}">
+                    {{ employee.role }}
+                </template>
+                
+            </TheTable>
         </div>
     </div>
 </template>
@@ -91,7 +106,9 @@
 
       data(){
         return {
-            // route: 'employee',
+            route: 'employee',
+            headers: ['Nome', 'E-mail', 'Cargo'],
+            // headers: ['name', 'email', 'role'],
             employees:[],
             newEmployee: {}
         }
