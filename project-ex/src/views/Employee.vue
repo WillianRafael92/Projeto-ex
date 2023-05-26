@@ -79,7 +79,20 @@
                 <template v-slot:Cargo="{employee}">
                     {{ employee.role }}
                 </template>
-                
+                <template v-slot:Ações="{ employee }">
+                    <div class="text-center">
+                        <!-- <i
+                            class="bi bi-pencil-fill text-secondary px-1"
+                            style="cursor: pointer"
+                            @click="edit(employee.id)">
+                        </i> -->
+                        <i
+                            class="bi bi-trash-fill text-danger px-1"
+                            style="cursor: pointer" @click="
+                            removeEmployee(employee)">
+                        </i>
+                    </div>
+                </template>
             </TheTable>
         </div>
     </div>
@@ -107,7 +120,7 @@
       data(){
         return {
             route: 'employee',
-            headers: ['Nome', 'E-mail', 'Cargo'],
+            headers: ['Nome', 'E-mail', 'Cargo', 'Ações'],
             // headers: ['name', 'email', 'role'],
             employees:[],
             newEmployee: {}
@@ -120,6 +133,15 @@
             this.newEmployee = {}
 
             localStorage.setItem("employees", JSON.stringify(this.employees));
+        },
+
+        removeEmployee(employee){
+            if(confirm('Você deseja excluir este funcionário?')){
+                const index = this.employees.indexOf(employee);
+                if(index !== -1){
+                    this.employees.splice(index, 1);
+                }
+            }
         }
         
       },
