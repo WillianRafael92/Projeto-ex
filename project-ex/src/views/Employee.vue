@@ -99,20 +99,20 @@
       
       methods: {
         addEmployee: function(){
-            this.employees.push(this.newEmployee);
-            this.newEmployee = {}
+            // this.employees.push(this.newEmployee);
+            // this.newEmployee = {}
 
-            localStorage.setItem("employees", JSON.stringify(this.employees));
+            // localStorage.setItem("employees", JSON.stringify(this.employees));
         }
         
       },
 
       created() {
-        this.employees = localStorage.getItem("employees") ? JSON.parse(localStorage.getItem("employees")) : this.employees;
+        // this.employees = localStorage.getItem("employees") ? JSON.parse(localStorage.getItem("employees")) : this.employees;
       },
 
       updated() {
-        localStorage.setItem("employees", JSON.stringify(this.employees));
+        // localStorage.setItem("employees", JSON.stringify(this.employees));
       }
       
     } 
